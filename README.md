@@ -3,16 +3,14 @@ Demo project using SPA
 
 ##Usage
 ###Bootup this project
-```npm install```
+`npm install`
 
 ###Run HTTP server
-```npm run start```
+`npm run start`
 
-###See if it's working!
-
-```http://localhost:8080```
+### See if it's working!
+`http://localhost:8080`
 
 ###Then make your own app!
-
-```npm run watch```
+`npm run watch`
 
