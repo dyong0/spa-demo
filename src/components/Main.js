@@ -16,9 +16,5 @@ Component.define('Main', {
                 this.testMethod('btn clicked!');
             }
         }
-    },
-
-    render: function () {
-
     }
 });

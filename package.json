@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/dyong0/spa-demo#readme",
   "dependencies": {
-    "jquery": "^3.1.0"
+    "jquery": "^3.1.0",
+    "spa-jquery": "^0.2.5"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
@@ -32,6 +33,7 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "http-server": "^0.9.0",
-    "jshint-stylish": "^2.2.1"
+    "jshint-stylish": "^2.2.1",
+    "spa-jquery": "file:..\\spa"
   }
 }

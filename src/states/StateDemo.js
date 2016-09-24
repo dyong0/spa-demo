@@ -4,21 +4,28 @@ var State = SPA.State;
 var $ = require('jquery');
 
 State.define('StateDemo', {
-    urlPattern : '/StateDemo',
+    urlPattern: '/StateDemo',
+    $body: null,
 
     onEnter: function (stateParams, next) {
         next();
     },
 
     onState: function () {
-        Component.create('StateDemo/StateDemo').then(function($stateDemo){
-            $('#app').append($stateDemo);
+        var self = this;
+
+        Component.create('StateDemo/StateDemo').then(function ($stateDemo) {
+            Component.getRootComponent().append($stateDemo);
+
+            return $stateDemo;
+        }).then(function ($stateDemo) {
+            self.$body = $stateDemo;
         });
     },
-    
+
     onExit: function (next) {
-        $('#app').empty();
-        
+        this.$body.remove();
+
         next();
     }
 });

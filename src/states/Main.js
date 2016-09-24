@@ -4,7 +4,8 @@ var State = SPA.State;
 var $ = require('jquery');
 
 State.define('Main', {
-    urlPattern : '/',  
+    urlPattern: '/',
+    $body: null,
 
     onEnter: function (stateParams, next) {
         $.getJSON('/data/users.json', function (users) {
@@ -13,21 +14,26 @@ State.define('Main', {
     },
 
     onState: function (users) {
+        var self = this;
         Component.create('Main').then(function ($main) {
-            $('#app').append($main); 
-            
-            Component.create('UserList/UserList').then(function($userList){
+            Component.getRootComponent().append($main);
+
+            Component.create('UserList/UserList').then(function ($userList) {
                 $userList.update({
-                    users : users
+                    users: users
                 });
 
                 $main.append($userList);
             });
+
+            return $main;
+        }).then(function($main){
+            self.$body = $main;
         });
     },
 
     onExit: function (next) {
-        $('#app').empty();
+        this.$body.remove();
 
         next();
     }
