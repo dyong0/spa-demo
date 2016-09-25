@@ -16,13 +16,14 @@ module.exports = function (grunt) {
                 tasks: ['jshint', 'shell:installSpaJquery:command', 'browserify'],
                 options: {
                     spawn: false,
+                    interrupt: true,
                 },
             },
         },
         jshint: {
             all: ['src/**/*.js'],
             options: {
-                reporter: require('jshint-stylish')
+                reporter: require('jshint-stylish', { beep: true })
             }
         },
         browserify: {
