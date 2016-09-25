@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Demo project using SPA",
   "scripts": {
-    "watch": "grunt watch",
+    "watch": "grunt",
     "start": "node node_modules/http-server/bin/http-server"
   },
   "repository": {
@@ -29,11 +29,12 @@
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
+    "grunt-concurrent": "^2.3.1",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "http-server": "^0.9.0",
     "jshint-stylish": "^2.2.1",
-    "spa-jquery": "file:..\\spa"
+    "spa-jquery": "file:..\\spa-jquery"
   }
 }

@@ -4,9 +4,16 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
-            scripts: {
+            dev: {
                 files: ['src/**/*.js'],
                 tasks: ['jshint', 'browserify'],
+                options: {
+                    spawn: false,
+                },
+            },
+            devDemo: {
+                files: ['src/**/*.js'],
+                tasks: ['jshint', 'shell:installSpaJquery:command', 'browserify'],
                 options: {
                     spawn: false,
                 },
@@ -21,13 +28,24 @@ module.exports = function (grunt) {
         browserify: {
             dist: {
                 files: {
-                        'build/app.js': ['src/**/*.js']
-                    }
+                    'build/app.js': ['src/**/*.js']
                 }
+            }
+        },
+        shell: {
+            installSpaJquery: {
+                command: function () {
+                    return 'npm install ../spa-jquery --dev-save';
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-shell');
+
+    grunt.registerTask('default', 'watch:dev');
+    grunt.registerTask('devDemo', 'watch:devDemo');
 };
