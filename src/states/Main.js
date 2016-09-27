@@ -27,7 +27,7 @@ State.define('Main', {
             });
 
             return $main;
-        }).then(function($main){
+        }).then(function ($main) {
             self.$body = $main;
         });
     },

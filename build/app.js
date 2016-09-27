@@ -10178,7 +10178,9 @@ return jQuery;
                     this[key] = states[key];
                 }
 
-                this.render();
+                if (this.is(':visible')) {
+                    this.render();
+                }
             },
             render: function () {
                 //default render fuction
@@ -10187,7 +10189,7 @@ return jQuery;
 
         function createSingleComponent() {
             return self.loadComponent(name).then(function (result) {
-                return $.extend($(result.rawHtml), result.def, extensions);
+                return $.extend($(result.rawHtml), extensions, result.def);
             }).then(function ($component) {
                 if ($component.events) {
                     var events = $component.events;
@@ -10241,7 +10243,8 @@ return jQuery;
     module.exports.Component = Component;
 
 
-})();;(function (init) {
+})();
+;(function (init) {
 
     var $ = require('jquery');
     var UrlPattern = require('url-pattern');
@@ -10254,11 +10257,11 @@ return jQuery;
         defaultState: null,
     };
 
-    State.setDefaultState = function (stateName) { 
+    State.setDefaultState = function (stateName) {
         this.defaultState = stateName;
     };
 
-    State.define = function (name, state) { 
+    State.define = function (name, state) {
         if (this.states[name]) {
             throw new Error('The state \"' + name + '\" exists already');
         }
@@ -11103,6 +11106,7 @@ Component.define('UserList/UserList', {
 
     render: function () {
         var self = this;
+
         Component.create('UserList/UserListItem').times(this.users.length).then(function (items) {
             self.empty();
 
@@ -11157,7 +11161,7 @@ State.define('Main', {
             });
 
             return $main;
-        }).then(function($main){
+        }).then(function ($main) {
             self.$body = $main;
         });
     },

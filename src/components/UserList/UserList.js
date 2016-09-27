@@ -7,6 +7,7 @@ Component.define('UserList/UserList', {
 
     render: function () {
         var self = this;
+
         Component.create('UserList/UserListItem').times(this.users.length).then(function (items) {
             self.empty();
 
